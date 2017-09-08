@@ -8,9 +8,9 @@ unsigned sumDigits(unsigned x) {
 	return sum;
 }
 
-unsigned sumFactors(int* arr, int size) {
+unsigned sumFactors(unsigned* arr, unsigned size) {
 	unsigned sum;
-	for (int a = 0; a < size; a++)
+	for (unsigned a = 0; a < size; a++)
 		sum += arr[0];
 	return sum;
 }
