@@ -4,13 +4,13 @@
 
 int numPrimeFactors(unsigned x) {
 	unsigned p = 2;
-	int pf;
+	int pf = 0;
 	if (x == 1)
 		return 1;
 	else {
 		while (true) {
 			if (!(x % p)) {
-				++pf;
+				pf++;
 				x /= p;
 				if (x == 1)
 					return pf;
@@ -21,8 +21,27 @@ int numPrimeFactors(unsigned x) {
 	}
 }
 
+void primeFactors(unsigned x, unsigned* arr) {
+	unsigned p = 2;
+	int pf = 0;
+	if (x == 1)
+		arr[pf] = 1;
+	else {
+		while (true) {
+			if (!(x % p)) {
+				arr[pf++] = p;
+				x /= p;
+				if (x == 1)
+					return;
+			}
+			else
+				p++;
+		}
+	}
+}
+
 unsigned sumDigits(unsigned x) {
-	unsigned sum, y;
+	unsigned sum = 0, y;
 	while (x) {
 		y = x % 10;
 		sum += y;
@@ -32,12 +51,19 @@ unsigned sumDigits(unsigned x) {
 }
 
 unsigned sumFactors(unsigned* arr, int size) {
-	unsigned sum;
+	unsigned sum = 0;
 	for (int a = 0; a < size; a++)
 		sum += arr[0];
 	return sum;
 }
 
-int main() {
+void listAllSmithNumbers(unsigned x) {
+	unsigned *arr;
+	for (unsigned a = 4; a < x; a++) {
+		arr = malloc(numPrimeFactors(a) * sizeof(unsigned));
+	}
+}
+
+int main(int argc, char* argv[]) {
 	return 0;
 }
