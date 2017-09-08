@@ -45,6 +45,7 @@ unsigned sumDigits(unsigned x) {
 	while (x) {
 		y = x % 10;
 		sum += y;
+		x -= y;
 		x /= 10;
 	}
 	return sum;
@@ -53,17 +54,25 @@ unsigned sumDigits(unsigned x) {
 unsigned sumFactors(unsigned* arr, int size) {
 	unsigned sum = 0;
 	for (int a = 0; a < size; a++)
-		sum += arr[0];
+		sum += sumDigits(arr[a]);
 	return sum;
 }
 
 void listAllSmithNumbers(unsigned x) {
 	unsigned *arr;
 	for (unsigned a = 4; a < x; a++) {
-		arr = malloc(numPrimeFactors(a) * sizeof(unsigned));
+		int numfactors = numPrimeFactors(a);
+		arr = (unsigned*)malloc(numfactors * sizeof(unsigned));
+		primeFactors(a, arr);
+		if (numfactors < 2)
+			continue;		
+		if (sumDigits(a) == sumFactors(arr,numfactors))
+			printf("%4u ",a);
+		free(arr);
 	}
 }
 
 int main(int argc, char* argv[]) {
+	listAllSmithNumbers(10000);
 	return 0;
 }
